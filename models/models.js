@@ -9,18 +9,14 @@ var dialect = (url[1]||null);
 var port = (url[5]||null);
 var host = (url[4]||null);
 var storage = process.env.DATABASE_STORAGE;
+var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_name, user, pwd,
 { dialect: protocol,
 protocol: protocol,
 port: port,
 host: host,
-storage: storage, 
-omitNull: true 
-});
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize(null, null, null,
-{ dialect: "sqlite",
-storage: "quiz.sqlite"
+storage: storage, //sólo SQLite (.env)
+omitNull: true //sólo Postgres
 });
 var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 exports.Quiz = Quiz; 
