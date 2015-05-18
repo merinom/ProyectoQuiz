@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset = "utf-8">
+  <title>Quiz</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+ </head>
+ <body>
+ <h2> Quiz¡: juego de las preguntitas</h2>
+<p>
+<%= respuesta %> <p>
+<a href="/quizes/<%= quizId %>">Pruebe otra vez</a>
+</p>
+ </body>
+</html>
