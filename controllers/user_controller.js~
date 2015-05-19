@@ -1,26 +1,17 @@
-var models = require('../models/models.js');
-
-
-exports.new = function(req, res) {
-res.render('comments/new.ejs', {quizid: req.params.quizId, errors: []});
+var users= { admin: {id:1, username:"admin" , password:"1234"},
+pepe: { id:2, username:"pepe", password:"5678"}
 };
-
-exports.create = function(req, res) {
-var comment = models.Comment.build(
-{ texto: req.body.comment.texto,
-QuizId: req.params.quizId
-});
-comment
-.validate()
-.then(
-function(err){
-if (err) {
-res.render('comments/new.ejs', {comment: comment, errors: err.errors});
-} else {
-comment // save: guarda en DB campo texto de comment
-.save()
-.then( function(){ res.redirect('/quizes/'+req.params.quizId)})
-} // res.redirect: Redirección HTTP a lista de preguntas
+exports.autenticar = function(login, password, callback) {
+models.User.find({where: {username: login}})
+.then(function(user) {
+if (user) {
+if(user.verifyPassword(password))
+callback(null, user);
+else
+callback(new Error('Password erróneo.'));
 }
-).catch(function(error){next(error)});
+else {
+callback(new Error('No existe el usuario ' + login));
+}
+}).catch(function(error){callback(error)});
 };
