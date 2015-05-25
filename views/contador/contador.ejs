@@ -1,0 +1,14 @@
+<p>Estos son todos los usuarios registrados:</p>
+<ul>
+<%=usuarios.length%>
+<%for (var i=0;i<usuarios.length;i++){%>
+<li>
+ Usuario <%(i+1)%>: <%=usuarios[i].username%><%if(usuarios[i].isAdmin===true){%>  (Administrador) <%}%>
+ </li>
+<%}%>
+</ul>
+-Numero de preguntas con comentarios:<%=numeropreguntasCom%>
+-Numero de comentarios:<%=numeroComentarios%>
+-Numero de preguntas:<%=numeropreguntas%>
+-Numero de comentarios medio:<%=numeroMedioComentarios%>
+-Numero preguntas sin comentarios:<%=numeropreguntasSin%>
